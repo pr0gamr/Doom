@@ -31,11 +31,6 @@ info.onCountdownEnd(function () {
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     Render.toggleViewMode()
 })
-sprites.onCreated(SpriteKind.Projectile, function (sprite) {
-    if (sprite == projectile2) {
-    	
-    }
-})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.fire, 500)
     if (sprite != projectile2) {
