@@ -162,7 +162,7 @@ mySprite.follow(Render.getRenderSpriteInstance(), 20)
 tiles.placeOnRandomTile(mySprite, assets.tile`myTile`)
 info.setLife(5)
 game.showLongText("PRESS A WHEN READY", DialogLayout.Full)
-info.startCountdown(180)
+info.startCountdown(120)
 forever(function () {
     if (spawners == 0) {
         game.gameOver(true)
