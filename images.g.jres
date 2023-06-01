@@ -1,0 +1,22 @@
+{
+    "{wI3W#S88KkC/+v=6": {
+        "data": "hwQCAAIAAABVAAAAVQAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Bullet"
+    },
+    "fIh/]+[R1b]GHTlMiy_L": {
+        "data": "hwQKAAoAAAAiIiIiIgAAACIiIiIiAAAAIiIiIiIAAAAiIiIiIgAAACIiIiIiAAAAIiIiIiIAAAAiIiIiIgAAACIiIiIiAAAAIiIiIiIAAAAiIiIiIgAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Enemy"
+    },
+    "GT|b$hDCoT2HM123KDDM": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvMsAAAAAAMD8uwsAAAAAoP/6ugAAAACguru/AAAAAKz7v8wAAAAAwKuvDAAAAAAArMoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "E"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
