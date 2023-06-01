@@ -1,9 +1,20 @@
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    Render.jumpWithHeightAndDuration(Render.getRenderSpriteInstance(), 16, 500)
+    if (shotgun == 0) {
+        projectile2 = sprites.createProjectileFromSprite(assets.image`shotgun`, Render.getRenderSpriteInstance(), Render.getAttribute(Render.attribute.dirX) * 100, Render.getAttribute(Render.attribute.dirY) * 100)
+        pause(500)
+        sprites.destroy(projectile2)
+        shotgun = 1
+    }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
-    tiles.setTileAt(location, assets.tile`transparency16`)
-    spawners += -1
+	
+})
+scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile`, function (sprite, location) {
+    if (sprite == projectile2) {
+        sprites.destroy(sprite)
+        tiles.setTileAt(location, assets.tile`transparency16`)
+        spawners += -1
+    }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(assets.image`Bullet`, Render.getRenderSpriteInstance(), Render.getAttribute(Render.attribute.dirX) * 100, Render.getAttribute(Render.attribute.dirY) * 100)
@@ -18,9 +29,16 @@ info.onCountdownEnd(function () {
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     Render.toggleViewMode()
 })
+sprites.onCreated(SpriteKind.Projectile, function (sprite) {
+    if (sprite == projectile2) {
+    	
+    }
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.fire, 500)
-    sprites.destroy(sprite)
+    if (sprite != projectile2) {
+        sprites.destroy(sprite)
+    }
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -28,6 +46,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
 })
 let projectile: Sprite = null
+let projectile2: Sprite = null
+let shotgun = 0
 game.setGameOverScoringType(game.ScoringType.None)
 game.setGameOverMessage(false, "YOU DIED")
 game.setGameOverMessage(true, "YOU BEAT THE INVASION")
@@ -163,6 +183,10 @@ tiles.placeOnRandomTile(mySprite, assets.tile`myTile`)
 info.setLife(5)
 game.showLongText("PRESS A WHEN READY", DialogLayout.Full)
 info.startCountdown(120)
+forever(function () {
+    pause(1500)
+    shotgun = 0
+})
 forever(function () {
     if (spawners == 0) {
         game.gameOver(true)

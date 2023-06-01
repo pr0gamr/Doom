@@ -163,6 +163,16 @@ d11111111111111bd11111111111111bd11111111111111bd11111111111111bd11111111111111b
 1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb
 1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb1ddddddddddddddb
 `;
+            case "image2":
+            case "shotgun":return img`
+4 . . . 4 . . 
+. 4 . 4 . 4 . 
+. . 4 . . . . 
+4 . . . 4 . 4 
+. . 4 . . 4 . 
+4 . . 4 . . 4 
+. . 4 . . . . 
+`;
         }
         return null;
     })
