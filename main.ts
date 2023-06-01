@@ -47,6 +47,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     sprites.destroy(otherSprite)
     info.changeLifeBy(-1)
 })
+let mySprite: Sprite = null
 let projectile: Sprite = null
 let projectile2: Sprite = null
 let shotgun = 0
@@ -179,9 +180,6 @@ scene.setBackgroundImage(img`
 tiles.setCurrentTilemap(tilemap`level1`)
 Render.setViewMode(ViewMode.raycastingView)
 tiles.placeOnRandomTile(Render.getRenderSpriteInstance(), sprites.dungeon.doorOpenNorth)
-let mySprite = sprites.create(assets.image`Enemy`, SpriteKind.Enemy)
-mySprite.follow(Render.getRenderSpriteInstance(), 20)
-tiles.placeOnRandomTile(mySprite, assets.tile`myTile`)
 info.setLife(5)
 game.showLongText("PRESS A WHEN READY", DialogLayout.Full)
 info.startCountdown(120)
@@ -198,6 +196,56 @@ forever(function () {
 forever(function () {
     pause(2000)
     mySprite = sprites.create(assets.image`Enemy`, SpriteKind.Enemy)
+    animation.runImageAnimation(
+    mySprite,
+    [img`
+        . . . . . . . . . . 
+        . . . . . . . . . . 
+        . . . 2 . . . . 2 2 
+        . 2 2 2 2 . . 2 2 2 
+        2 1 1 1 2 2 2 2 2 2 
+        2 1 f 1 2 2 1 1 1 2 
+        2 1 1 1 2 2 1 f 1 2 
+        2 2 2 2 2 2 1 1 1 2 
+        2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 
+        `,img`
+        . . . . . . . . . . 
+        . . . . . . . . . . 
+        . . . . . . . . . . 
+        . 2 2 2 2 . . . . . 
+        2 1 1 1 2 2 2 2 2 2 
+        2 1 f 1 2 2 1 1 1 2 
+        2 1 1 1 2 2 1 f 1 2 
+        2 2 2 2 2 2 1 1 1 2 
+        2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 
+        `,img`
+        . . . . . . . . . . 
+        . . . . . . . . . . 
+        . . . . . . . . . . 
+        . . 2 2 2 . . . . . 
+        2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 1 1 1 2 
+        2 1 1 1 2 2 1 f 1 2 
+        2 1 f 1 2 2 1 1 1 2 
+        2 1 1 1 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 
+        `,img`
+        . . . . . . . . . . 
+        . . . . . . . . . . 
+        . . . . . . . . . . 
+        . 2 2 2 2 . . . . . 
+        2 1 1 1 2 2 2 2 2 2 
+        2 1 f 1 2 2 1 1 1 2 
+        2 1 1 1 2 2 1 f 1 2 
+        2 2 2 2 2 2 1 1 1 2 
+        2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 
+        `],
+    500,
+    true
+    )
     tiles.placeOnRandomTile(mySprite, assets.tile`myTile`)
     mySprite.follow(Render.getRenderSpriteInstance(), 20)
 })
