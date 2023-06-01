@@ -1,5 +1,6 @@
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (shotgun == 0) {
+        music.play(music.melodyPlayable(music.bigCrash), music.PlaybackMode.UntilDone)
         projectile2 = sprites.createProjectileFromSprite(assets.image`shotgun`, Render.getRenderSpriteInstance(), Render.getAttribute(Render.attribute.dirX) * 100, Render.getAttribute(Render.attribute.dirY) * 100)
         pause(500)
         sprites.destroy(projectile2)
@@ -17,6 +18,7 @@ scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile`, function (sprite
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.play(music.melodyPlayable(music.smallCrash), music.PlaybackMode.UntilDone)
     projectile = sprites.createProjectileFromSprite(assets.image`Bullet`, Render.getRenderSpriteInstance(), Render.getAttribute(Render.attribute.dirX) * 100, Render.getAttribute(Render.attribute.dirY) * 100)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -183,6 +185,7 @@ tiles.placeOnRandomTile(mySprite, assets.tile`myTile`)
 info.setLife(5)
 game.showLongText("PRESS A WHEN READY", DialogLayout.Full)
 info.startCountdown(120)
+music.play(music.stringPlayable("C C D C C C D D ", 180), music.PlaybackMode.LoopingInBackground)
 forever(function () {
     pause(1500)
     shotgun = 0
