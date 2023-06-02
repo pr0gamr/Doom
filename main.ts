@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const hand = SpriteKind.create()
+}
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (shotgun == 0) {
         music.play(music.melodyPlayable(music.bigCrash), music.PlaybackMode.UntilDone)
@@ -6,9 +9,6 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         sprites.destroy(projectile2)
         shotgun = 1
     }
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
-	
 })
 scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile`, function (sprite, location) {
     if (sprite == projectile2) {
@@ -31,6 +31,12 @@ info.onCountdownEnd(function () {
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     Render.toggleViewMode()
 })
+scene.onOverlapTile(SpriteKind.Projectile, assets.tile`myTile1`, function (sprite, location) {
+    if (sprite == projectile2) {
+        sprites.destroy(sprite)
+        tiles.setTileAt(location, assets.tile`transparency16`)
+    }
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.fire, 500)
     if (sprite != projectile2) {
@@ -43,9 +49,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
 })
 let mySprite: Sprite = null
+let handy = 0
+let handx = 0
 let projectile: Sprite = null
 let projectile2: Sprite = null
 let shotgun = 0
+let hand = sprites.create(assets.image`crosshair`, SpriteKind.hand)
 game.setGameOverScoringType(game.ScoringType.None)
 game.setGameOverMessage(false, "YOU DIED")
 game.setGameOverMessage(true, "YOU BEAT THE INVASION")
@@ -180,13 +189,13 @@ game.showLongText("PRESS A WHEN READY", DialogLayout.Full)
 info.startCountdown(120)
 music.play(music.stringPlayable("C C D C C C D D ", 180), music.PlaybackMode.LoopingInBackground)
 forever(function () {
-    pause(1500)
-    shotgun = 0
+    handx = Render.getAttribute(Render.attribute.dirX) + Render.getAttribute(Render.attribute.dirX) * 20
+    handy = Render.getAttribute(Render.attribute.dirY) + Render.getAttribute(Render.attribute.dirY) * 20
+    hand.setPosition(Render.getRenderSpriteInstance().x + handx, Render.getRenderSpriteInstance().y + handy)
 })
 forever(function () {
-    if (spawners == 0) {
-        game.gameOver(true)
-    }
+    pause(1500)
+    shotgun = 0
 })
 forever(function () {
     pause(2000)
@@ -243,4 +252,9 @@ forever(function () {
     )
     tiles.placeOnRandomTile(mySprite, assets.tile`myTile`)
     mySprite.follow(Render.getRenderSpriteInstance(), 20)
+})
+forever(function () {
+    if (spawners == 0) {
+        game.gameOver(true)
+    }
 })

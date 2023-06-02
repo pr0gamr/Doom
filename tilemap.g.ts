@@ -6,6 +6,8 @@ namespace myTiles {
     export const tile1 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile2 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile3 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -67,7 +69,7 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 `, [myTiles.transparency16], TileScale.Sixteen);
             case "level1":
-            case "level1":return tiles.createTilemap(hex`1000100002020202020202020202020202020202020100000000000000000000000000020200020000000000000000000000000202000200000002020202020200000002020002000000000200000102000000020203020202020200000000020000000202000000030000000000000200000002020000000200000002020202020000020200000002010000000000000200000202000000020202020202000002000002020000000000000000000000020000020202000000000000000000000000000202000002030202020200000000000002020000020000000002000000000000020204000200000001020000000000010202020202020202020202020202020202`, img`
+            case "level1":return tiles.createTilemap(hex`1000100002020202020202020202020202020202020100000000000000000000000000020200020000000000000000000000000202000200000002020202020200000002020002000000000200000102000000020204020202020200000000020000000202000000040000000000000200000002020000000200000002020202020000020200000002010000000000000200000202000000020202020202000002000002020000000000000000000000020000020202000000000000000000000000000202000002040202020200000000000002020000020000000002000000000000020203000200000001020000000000010202020202020202020202020202020202`, img`
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 2 . . . . . . . . . . . . . . 2 
 2 . 2 . . . . . . . . . . . . 2 
@@ -84,7 +86,7 @@ namespace myTiles {
 2 . . 2 . . . . 2 . . . . . . 2 
 2 . . 2 . . . . 2 . . . . . . 2 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-`, [myTiles.transparency16,myTiles.tile1,sprites.dungeon.floorLight0,sprites.dungeon.doorClosedNorth,sprites.dungeon.doorOpenNorth,myTiles.tile2], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile1,sprites.dungeon.floorLight0,sprites.dungeon.doorOpenNorth,myTiles.tile3], TileScale.Sixteen);
         }
         return null;
     })
@@ -96,6 +98,8 @@ namespace myTiles {
             case "tile1":return tile1;
             case "myTile0":
             case "tile2":return tile2;
+            case "myTile1":
+            case "tile3":return tile3;
         }
         return null;
     })
