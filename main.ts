@@ -256,6 +256,7 @@ forever(function () {
 })
 forever(function () {
     if (spawners == 0 && room == 1) {
+        info.setLife(6)
         tiles.setCurrentTilemap(tilemap`level6`)
         tiles.placeOnRandomTile(Render.getRenderSpriteInstance(), sprites.dungeon.doorOpenNorth)
         pause(100)
