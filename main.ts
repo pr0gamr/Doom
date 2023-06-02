@@ -255,6 +255,7 @@ forever(function () {
 })
 forever(function () {
     if (spawners == 0) {
+        info.setScore(info.countdown())
         game.gameOver(true)
     }
 })
