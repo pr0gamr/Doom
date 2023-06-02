@@ -186,8 +186,9 @@ Render.setViewMode(ViewMode.raycastingView)
 tiles.placeOnRandomTile(Render.getRenderSpriteInstance(), sprites.dungeon.doorOpenNorth)
 info.setLife(5)
 game.showLongText("PRESS A WHEN READY", DialogLayout.Full)
-info.startCountdown(120)
+info.startCountdown(180)
 music.play(music.stringPlayable("C C D C C C D D ", 180), music.PlaybackMode.LoopingInBackground)
+let room = 1
 forever(function () {
     handx = Render.getAttribute(Render.attribute.dirX) + Render.getAttribute(Render.attribute.dirX) * 20
     handy = Render.getAttribute(Render.attribute.dirY) + Render.getAttribute(Render.attribute.dirY) * 20
@@ -254,8 +255,15 @@ forever(function () {
     mySprite.follow(Render.getRenderSpriteInstance(), 20)
 })
 forever(function () {
-    if (spawners == 0) {
-        info.setScore(120 - info.countdown())
+    if (spawners == 0 && room == 1) {
+        tiles.setCurrentTilemap(tilemap`level6`)
+        tiles.placeOnRandomTile(Render.getRenderSpriteInstance(), sprites.dungeon.doorOpenNorth)
+        pause(100)
+        room += 1
+        spawners = 8
+        pause(100)
+    } else if (spawners == 0 && room == 2) {
+        info.setScore(180 - info.countdown())
         game.gameOver(true)
     }
 })
